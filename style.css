@@ -1,0 +1,38 @@
+.todo-input-container, .todo-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 10px 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+#todoInput {
+  width: 95%;
+  padding: 10px;
+  font-size: 16px;
+}
+.add-btn, .delete-btn {
+  background-color: #189daf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 20px;
+}
+.filter-buttons button {
+  padding: 5px 30px;
+  border-radius: 5px;
+}
+.todo-text {
+  font-size: 16px;
+  flex-grow: 1;
+}
+.todo-text.completed {
+  text-decoration: line-through;
+  color: red;
+}
+.icons i {
+  font-size: 18px;
+  cursor: pointer;
+}
+input[type="checkbox"] {
+  transform: scale(1.2);
+}
