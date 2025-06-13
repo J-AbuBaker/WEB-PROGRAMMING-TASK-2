@@ -41,3 +41,35 @@ function validateTask(taskText) {
   }
   return true;
 }
+
+
+function addTaskToList(taskText, isCompleted = false) {
+  const taskItem = document.createElement('li');
+  taskItem.innerHTML = `
+    <span class="todo-text ${isCompleted ? 'completed' : ''}">${taskText}</span>
+    <input type="checkbox" ${isCompleted ? 'checked' : ''}>
+    <span class="icons">
+      <i class="fas fa-pen edit-icon"></i>
+      <i class="fas fa-trash delete-icon"></i>
+    </span>
+  `;
+  todoList.appendChild(taskItem);
+  saveTasksToLocalStorage();
+}
+
+function saveTasksToLocalStorage() {
+  const tasks = [];
+  document.querySelectorAll('#todo-list li').forEach(taskItem => {
+    tasks.push({
+      text: taskItem.querySelector('.todo-text').textContent,
+      completed: taskItem.querySelector('input[type="checkbox"]').checked
+    });
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasksFromLocalStorage() {
+  const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+  storedTasks.forEach(task => addTaskToList(task.text, task.completed));
+}
+
