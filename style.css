@@ -10,3 +10,14 @@
   padding: 10px;
   font-size: 16px;
 }
+.add-btn, .delete-btn {
+  background-color: #189daf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 20px;
+}
+.filter-buttons button {
+  padding: 5px 30px;
+  border-radius: 5px;
+}
