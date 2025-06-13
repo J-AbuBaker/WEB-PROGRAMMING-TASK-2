@@ -21,3 +21,23 @@ addTaskButton.addEventListener('click', () => {
     saveTasksToLocalStorage();
   }
 });
+
+function validateTask(taskText) {
+  if (!taskText) {
+    errorMessage.textContent = 'The field cannot be empty!';
+    return false;
+  }
+  if (/[ء-ي]/.test(taskText)) {
+    errorMessage.textContent = 'Arabic characters are not allowed!';
+    return false;
+  }
+  if (/^\\d/.test(taskText)) {
+    errorMessage.textContent = 'The task cannot start with a number!';
+    return false;
+  }
+  if (taskText.length < 5) {
+    errorMessage.textContent = 'The task must be at least 5 characters!';
+    return false;
+  }
+  return true;
+}
