@@ -119,3 +119,14 @@ function setActiveFilter(activeId) {
   });
   document.getElementById(activeId).classList.add('active');
 }
+todoList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('edit-icon')) {
+    const li = event.target.closest('li');
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    if (checkbox.checked) return;
+    currentEditItem = li;
+    editInput.value = li.querySelector('.todo-text').textContent;
+    editModal.style.display = 'block';
+    editInput.focus();
+  }
+});
