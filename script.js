@@ -73,3 +73,20 @@ function loadTasksFromLocalStorage() {
   storedTasks.forEach(task => addTaskToList(task.text, task.completed));
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  loadTasksFromLocalStorage();
+
+  document.getElementById('deleteDone').addEventListener('click', () => {
+    document.querySelectorAll('#todo-list li').forEach(task => {
+      if (task.querySelector('input[type="checkbox"]').checked) task.remove();
+    });
+    saveTasksToLocalStorage();
+  });
+
+  document.getElementById('deleteAll').addEventListener('click', () => {
+    if (confirm('Are you sure you want to delete all tasks?')) {
+      todoList.innerHTML = '';
+      saveTasksToLocalStorage();
+    }
+  });
+});
