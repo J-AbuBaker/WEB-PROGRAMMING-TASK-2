@@ -90,3 +90,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+document.getElementById('showAll').addEventListener('click', () => {
+  filterTasks('all');
+  setActiveFilter('showAll');
+});
+document.getElementById('showDone').addEventListener('click', () => {
+  filterTasks('done');
+  setActiveFilter('showDone');
+});
+document.getElementById('showTodo').addEventListener('click', () => {
+  filterTasks('todo');
+  setActiveFilter('showTodo');
+});
+
+function filterTasks(filterType) {
+  document.querySelectorAll('#todo-list li').forEach(task => {
+    const isChecked = task.querySelector('input[type="checkbox"]').checked;
+    task.style.display =
+      filterType === 'all' ? 'flex' :
+      filterType === 'done' ? (isChecked ? 'flex' : 'none') :
+      !isChecked ? 'flex' : 'none';
+  });
+}
+
+function setActiveFilter(activeId) {
+  document.querySelectorAll('.filter-buttons button').forEach(button => {
+    button.classList.remove('active');
+  });
+  document.getElementById(activeId).classList.add('active');
+}
