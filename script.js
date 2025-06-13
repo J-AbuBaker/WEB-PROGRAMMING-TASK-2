@@ -130,3 +130,26 @@ todoList.addEventListener('click', (event) => {
     editInput.focus();
   }
 });
+function saveEditTask() {
+  const newText = editInput.value.trim();
+  if (validateTask(newText) && currentEditItem) {
+    const textSpan = currentEditItem.querySelector('.todo-text');
+    textSpan.textContent = newText;
+    editModal.style.display = 'none';
+    saveTasksToLocalStorage();
+  }
+}
+
+saveEditBtn.addEventListener('click', saveEditTask);
+cancelEditBtn.addEventListener('click', () => {
+  editModal.style.display = 'none';
+});
+editInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') saveEditTask();
+  if (e.key === 'Escape') editModal.style.display = 'none';
+});
+window.addEventListener('click', (event) => {
+  if (event.target === editModal) {
+    editModal.style.display = 'none';
+  }
+});
