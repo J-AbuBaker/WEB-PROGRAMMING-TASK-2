@@ -11,3 +11,13 @@ errorMessage.classList.add('error-message');
 todoInput.parentElement.appendChild(errorMessage);
 
 let currentEditItem = null;
+
+addTaskButton.addEventListener('click', () => {
+  const taskText = todoInput.value.trim();
+  if (validateTask(taskText)) {
+    addTaskToList(taskText);
+    todoInput.value = '';
+    errorMessage.textContent = '';
+    saveTasksToLocalStorage();
+  }
+});
