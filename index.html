@@ -19,24 +19,30 @@
     </div>
     <div class="todo-container">
       <h1>TodoList</h1>
+      
       <div class="filter-buttons">
         <button id="showAll">All</button>
         <button id="showDone">Done</button>
         <button id="showTodo">To-Do</button>
       </div>
-      <ul id="todo-list">
-      </ul>
+      
+      <ul id="todo-list"></ul>
       <button id="deleteDone" class="delete-btn">Delete done tasks</button>
       <button id="deleteAll" class="delete-btn">Delete all tasks</button>
     </div>
+    
     <div id="editModal" class="modal">
-        <div class="modal-content">
-          <span class="close-button">&times;</span>
-          <h2>Edit Task</h2>
-          <input type="text" id="editInput" placeholder="Edit your task here" />
+      <div class="modal-content">
+        <h2>Edit Task</h2>
+        <input type="text" id="editInput" placeholder="Edit your task here" />
+        <div class="modal-buttons">
+          <button class="cancel-btn">Cancel</button>
           <button id="saveEditBtn">Save</button>
+        </div>
       </div>
     </div>
+    
     <script src="script.js"></script>
+    
   </body>
 </html>
