@@ -29,3 +29,10 @@
   text-decoration: line-through;
   color: red;
 }
+.icons i {
+  font-size: 18px;
+  cursor: pointer;
+}
+input[type="checkbox"] {
+  transform: scale(1.2);
+}
