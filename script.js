@@ -6,3 +6,8 @@ const editInput = document.getElementById('editInput');
 const closeButton = document.querySelector('.close-button');
 const saveEditBtn = document.getElementById('saveEditBtn');
 const cancelEditBtn = document.querySelector('.cancel-btn');
+const errorMessage = document.createElement('div');
+errorMessage.classList.add('error-message');
+todoInput.parentElement.appendChild(errorMessage);
+
+let currentEditItem = null;
