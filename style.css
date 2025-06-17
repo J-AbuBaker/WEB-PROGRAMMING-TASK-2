@@ -73,3 +73,15 @@ input[type="checkbox"] {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+input[type="checkbox"]:checked {
+    border-color: green;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    font-size: 12px;
+    color: green;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+}
