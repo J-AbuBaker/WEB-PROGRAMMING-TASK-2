@@ -108,3 +108,13 @@ input[type="checkbox"]:checked::after {
 .filter-buttons button.active {
     background-color: #0039b3;
 }
+.delete-btn {
+    background-color: rgba(206, 8, 8, 0.9);
+    color: white;
+    padding: 5px 93px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
