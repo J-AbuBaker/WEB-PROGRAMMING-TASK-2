@@ -36,3 +36,129 @@
 input[type="checkbox"] {
   transform: scale(1.2);
 }
+.todo-text.completed {
+    text-decoration: line-through;
+    color: red;
+}
+.icons {
+    display: flex;
+    gap: 10px;
+}
+.icons i {
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+.edit-icon {
+    color: #e3c30d;
+}
+
+.edit-icon:hover {
+    color: #32ca1b;
+}
+.delete-icon {
+    color: #dc3545;
+}
+
+.delete-icon:hover {
+    color: #a71d2a;
+}
+input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+input[type="checkbox"]:checked {
+    border-color: green;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    font-size: 12px;
+    color: green;
+    display: block;
+    text-align: center;
+    line-height: 15px;
+}
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+.filter-buttons button {
+    padding: 4px 75px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #189daf;
+    color: white;
+    transition: background-color 0.3s;
+}
+.filter-buttons button:hover {
+    background-color: #0006b3;
+}
+
+.filter-buttons button.active {
+    background-color: #0039b3;
+}
+.delete-btn {
+    background-color: rgba(206, 8, 8, 0.9);
+    color: white;
+    padding: 5px 93px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+}
+.delete-btn:hover {
+    background-color: rgb(226, 72, 72);
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #000;
+}
