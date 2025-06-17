@@ -63,3 +63,13 @@ input[type="checkbox"] {
 .delete-icon:hover {
     color: #a71d2a;
 }
+input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
