@@ -49,3 +49,10 @@ input[type="checkbox"] {
     font-size: 18px;
     transition: color 0.2s;
 }
+.edit-icon {
+    color: #e3c30d;
+}
+
+.edit-icon:hover {
+    color: #32ca1b;
+}
