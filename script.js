@@ -1,3 +1,4 @@
+// References
 const todoList = document.getElementById('todo-list');
 const todoInput = document.getElementById('todoInput');
 const addTaskButton = document.getElementById('addTaskButton');
@@ -6,12 +7,14 @@ const editInput = document.getElementById('editInput');
 const closeButton = document.querySelector('.close-button');
 const saveEditBtn = document.getElementById('saveEditBtn');
 const cancelEditBtn = document.querySelector('.cancel-btn');
+
 const errorMessage = document.createElement('div');
 errorMessage.classList.add('error-message');
 todoInput.parentElement.appendChild(errorMessage);
 
 let currentEditItem = null;
 
+// Add new task
 addTaskButton.addEventListener('click', () => {
   const taskText = todoInput.value.trim();
   if (validateTask(taskText)) {
@@ -20,6 +23,10 @@ addTaskButton.addEventListener('click', () => {
     errorMessage.textContent = '';
     saveTasksToLocalStorage();
   }
+});
+
+todoInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') addTaskButton.click();
 });
 
 function validateTask(taskText) {
@@ -31,7 +38,7 @@ function validateTask(taskText) {
     errorMessage.textContent = 'Arabic characters are not allowed!';
     return false;
   }
-  if (/^\\d/.test(taskText)) {
+  if (/^\d/.test(taskText)) {
     errorMessage.textContent = 'The task cannot start with a number!';
     return false;
   }
@@ -41,7 +48,6 @@ function validateTask(taskText) {
   }
   return true;
 }
-
 
 function addTaskToList(taskText, isCompleted = false) {
   const taskItem = document.createElement('li');
@@ -89,18 +95,73 @@ document.addEventListener('DOMContentLoaded', () => {
       saveTasksToLocalStorage();
     }
   });
+
+  document.getElementById('showAll').addEventListener('click', () => {
+    filterTasks('all');
+    setActiveFilter('showAll');
+  });
+
+  document.getElementById('showDone').addEventListener('click', () => {
+    filterTasks('done');
+    setActiveFilter('showDone');
+  });
+
+  document.getElementById('showTodo').addEventListener('click', () => {
+    filterTasks('todo');
+    setActiveFilter('showTodo');
+  });
 });
-document.getElementById('showAll').addEventListener('click', () => {
-  filterTasks('all');
-  setActiveFilter('showAll');
+
+todoList.addEventListener('change', (event) => {
+  if (event.target.type === 'checkbox') {
+    const textElement = event.target.closest('li').querySelector('.todo-text');
+    textElement.classList.toggle('completed', event.target.checked);
+    saveTasksToLocalStorage();
+  }
 });
-document.getElementById('showDone').addEventListener('click', () => {
-  filterTasks('done');
-  setActiveFilter('showDone');
+
+todoList.addEventListener('click', (event) => {
+  const li = event.target.closest('li');
+  if (event.target.classList.contains('edit-icon')) {
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    if (checkbox.checked) return;
+    currentEditItem = li;
+    const text = li.querySelector('.todo-text').textContent;
+    editInput.value = text;
+    editModal.style.display = 'block';
+    editInput.focus();
+  }
+
+  if (event.target.classList.contains('delete-icon')) {
+    li.remove();
+    saveTasksToLocalStorage();
+  }
 });
-document.getElementById('showTodo').addEventListener('click', () => {
-  filterTasks('todo');
-  setActiveFilter('showTodo');
+
+function saveEditTask() {
+  const newText = editInput.value.trim();
+  if (validateTask(newText) && currentEditItem) {
+    const textSpan = currentEditItem.querySelector('.todo-text');
+    textSpan.textContent = newText;
+    editModal.style.display = 'none';
+    saveTasksToLocalStorage();
+  }
+}
+
+saveEditBtn.addEventListener('click', saveEditTask);
+cancelEditBtn.addEventListener('click', () => {
+  editModal.style.display = 'none';
+});
+
+editInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') saveEditTask();
+  if (e.key === 'Escape') editModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === editModal) {
+    editModal.style.display = 'none';
+  }
 });
 
 function filterTasks(filterType) {
@@ -119,37 +180,3 @@ function setActiveFilter(activeId) {
   });
   document.getElementById(activeId).classList.add('active');
 }
-todoList.addEventListener('click', (event) => {
-  if (event.target.classList.contains('edit-icon')) {
-    const li = event.target.closest('li');
-    const checkbox = li.querySelector('input[type="checkbox"]');
-    if (checkbox.checked) return;
-    currentEditItem = li;
-    editInput.value = li.querySelector('.todo-text').textContent;
-    editModal.style.display = 'block';
-    editInput.focus();
-  }
-});
-function saveEditTask() {
-  const newText = editInput.value.trim();
-  if (validateTask(newText) && currentEditItem) {
-    const textSpan = currentEditItem.querySelector('.todo-text');
-    textSpan.textContent = newText;
-    editModal.style.display = 'none';
-    saveTasksToLocalStorage();
-  }
-}
-
-saveEditBtn.addEventListener('click', saveEditTask);
-cancelEditBtn.addEventListener('click', () => {
-  editModal.style.display = 'none';
-});
-editInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') saveEditTask();
-  if (e.key === 'Escape') editModal.style.display = 'none';
-});
-window.addEventListener('click', (event) => {
-  if (event.target === editModal) {
-    editModal.style.display = 'none';
-  }
-});
