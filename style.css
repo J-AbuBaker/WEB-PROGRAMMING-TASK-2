@@ -85,3 +85,9 @@ input[type="checkbox"]:checked::after {
     text-align: center;
     line-height: 15px;
 }
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
