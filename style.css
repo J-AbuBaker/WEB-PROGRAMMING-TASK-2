@@ -101,3 +101,10 @@ input[type="checkbox"]:checked::after {
     color: white;
     transition: background-color 0.3s;
 }
+.filter-buttons button:hover {
+    background-color: #0006b3;
+}
+
+.filter-buttons button.active {
+    background-color: #0039b3;
+}
