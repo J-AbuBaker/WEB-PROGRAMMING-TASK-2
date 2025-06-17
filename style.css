@@ -56,3 +56,10 @@ input[type="checkbox"] {
 .edit-icon:hover {
     color: #32ca1b;
 }
+.delete-icon {
+    color: #dc3545;
+}
+
+.delete-icon:hover {
+    color: #a71d2a;
+}
